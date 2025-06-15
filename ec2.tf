@@ -1,4 +1,4 @@
-#key-pair
+#Create a key-pair
 resource aws_key_pair my_key_pair {
 	key_name = "key_pair"
 	public_key= file("ec2_key.pub")
@@ -101,9 +101,9 @@ resource "aws_security_group" "web" {
 
 # Create an EC2 instance
 resource "aws_instance" "web_server" {
-  ami                    = var.ec2_ami  # Amazon Linux 2 AMI (free tier eligible)
-  instance_type          = var.ec2_instance_type              # Free tier eligible
-  key_name               = aws_key_pair.my_key_pair.key_name            # Replace with your key pair name
+  ami                    = var.ec2_ami  
+  instance_type          = var.ec2_instance_type             
+  key_name               = aws_key_pair.my_key_pair.key_name          
   vpc_security_group_ids = [aws_security_group.web.id]
   subnet_id              = aws_subnet.public.id
 
