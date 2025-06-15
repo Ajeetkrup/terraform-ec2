@@ -7,13 +7,14 @@ This repository contains Terraform configurations for setting up AWS infrastruct
 ```
 .
 ├── backup_backend/          # Backend infrastructure setup
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
+│   ├── dynamoDb.tf
+│   ├── s3.tf
+│   ├── providers.tf
 │   └── terraform.tf
 ├── ec2Folder/              # EC2 instance configuration
-│   ├── main.tf
+│   ├── ec2.tf
 │   ├── variables.tf
+│   ├── providers.tf
 │   ├── outputs.tf
 │   └── terraform.tf
 └── README.md
