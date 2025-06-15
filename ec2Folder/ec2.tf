@@ -1,6 +1,6 @@
 #Create a key-pair
-resource aws_key_pair my_key_pair {
-	key_name = "key_pair"
+resource aws_key_pair my_key_pair_dev {
+	key_name = "${var.env}-key_pair"
 	public_key= file("ec2_key.pub")
 }
 
@@ -104,11 +104,10 @@ resource "aws_instance" "web_server" {
   #count = 2
   for_each = tomap({
     terra_t2_micro = "t2.micro"
-    terra_t2_medium = "t2.medium"
   })
   ami                    = var.ec2_ami  
   instance_type          = each.value            
-  key_name               = aws_key_pair.my_key_pair.key_name          
+  key_name               = aws_key_pair.my_key_pair_dev.key_name          
   vpc_security_group_ids = [aws_security_group.web.id]
   subnet_id              = aws_subnet.public.id
 
