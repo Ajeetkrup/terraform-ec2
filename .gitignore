@@ -1,4 +1,11 @@
-.terraform
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
+ec2Folder/.terraform/
+ec2Folder/.terraform.lock.hcl
+ec2Folder/terraform.tfstate
+ec2Folder/terraform.tfstate.backup
+ec2Folder/ec2_key
+ec2Folder/ec2_key.pub
+
+backup_backend/.terraform/
+backup_backend/.terraform.lock.hcl
+backup_backend/terraform.tfstate
+backup_backend/terraform.tfstate.backup
