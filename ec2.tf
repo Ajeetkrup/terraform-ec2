@@ -101,16 +101,26 @@ resource "aws_security_group" "web" {
 
 # Create an EC2 instance
 resource "aws_instance" "web_server" {
+  #count = 2
+  for_each = tomap({
+    terra_t2_micro = "t2.micro"
+    terra_t2_medium = "t2.medium"
+  })
   ami                    = var.ec2_ami  
-  instance_type          = var.ec2_instance_type             
+  instance_type          = each.value            
   key_name               = aws_key_pair.my_key_pair.key_name          
   vpc_security_group_ids = [aws_security_group.web.id]
   subnet_id              = aws_subnet.public.id
 
   # User data script to install Apache web server
   user_data = file("install_apache.sh") 
-          
+  
+  root_block_device {
+    volume_size = var.env == "prod" ? 20 : var.def_vol_size
+    volume_type = "gp3"
+  }
+
   tags = {
-    Name = var.ec2_instance_name
+    Name = each.key
   }
 }

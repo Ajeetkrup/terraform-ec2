@@ -15,3 +15,15 @@ variable ec2_instance_name {
     type = string
     default = "ajeet_terra_instance"
 }
+
+variable def_vol_size {
+    description = "EC2 instance root volume size"
+    type = number
+    default = 10
+}
+
+variable env {
+    description = "EC2 instance environment type"
+    type = string
+    default = "prod"
+}
